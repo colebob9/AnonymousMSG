@@ -1,0 +1,34 @@
+# AnonymousMSG - Written by colebob9
+# Version 1.0.0
+# Licensed under the MIT license
+
+variables:
+	{anonymous.spytoggle.%player%} = true
+
+command /anonymous <player> <text>:
+    description: Tells a player a message anonymously.
+    permission: anonymous.msg
+    aliases: /an, /anony, /apm, /amsg
+    usage: /anonymous <player> <message>
+    trigger:
+        message "<gray>[<cyan>ANONYMOUS PM<gray>] %arg 2%" to arg 1
+        loop all players:
+            loop-player has permission "anonymous.spy"
+            if {anonymous.spytoggle.%player%} is true:
+                send "<gray>[<cyan>ANONYSPY<gray>] %player%<gray> -> %arg 1%: %arg 2%" to loop-player
+            
+command /anonymoustoggle:
+    description: Toggles anonymous spy mode.
+    permission: anonymous.spy
+    aliases: /at, /anonyt
+    trigger:
+        if {anonymous.spytoggle.%player%} is false:
+            player has permission "anonymous.spy"
+            set {anonymous.spytoggle.%player%} to true
+            message "<gray>[<cyan>ANONYSPY<gray>] Anonymous message spying is <green>enabled<gray>." to player
+            stop trigger
+        if {anonymous.spytoggle.%player%} is true:
+            player has permission "anonymous.spy"
+            set {anonymous.spytoggle.%player%} to false
+            message "<gray>[<cyan>ANONYSPY<gray>] Anonymous message spying is <red>disabled<gray>." to player
+            stop trigger
