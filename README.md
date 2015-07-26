@@ -1,5 +1,7 @@
 # AnonymousMSG
-A simple little Skript script for anonymous PMs.
+A simple little Skript script for anonymous PMs between players. Provides message spying.
+
+## [Commands and Permissions](https://github.com/colebob9/AnonymousMSG/wiki/Commands-and-Permissions)
 
 For use with [Skript](http://dev.bukkit.org/bukkit-plugins/skript/)
 
